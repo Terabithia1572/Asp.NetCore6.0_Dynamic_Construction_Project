@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,36 @@ namespace BusinessLayer.Concrete
 {
     public class VideoManager : IVideoService
     {
+        IVideoDal _videoDal;
+
+        public VideoManager(IVideoDal videoDal)
+        {
+            _videoDal = videoDal;
+        }
+
         public List<Video> GetList()
         {
-            throw new NotImplementedException();
+            return _videoDal.GetListAll();
         }
 
         public void TAdd(Video t)
         {
-            throw new NotImplementedException();
+            _videoDal.Insert(t);
         }
 
         public void TDelete(Video t)
         {
-            throw new NotImplementedException();
+            _videoDal.Delete(t);
         }
 
         public Video TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _videoDal.GetByID(id);
         }
 
         public void TUpdate(Video t)
         {
-            throw new NotImplementedException();
+            _videoDal.Update(t);
         }
     }
 }

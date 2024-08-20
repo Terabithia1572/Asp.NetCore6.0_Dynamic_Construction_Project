@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,36 @@ namespace BusinessLayer.Concrete
 {
     public class ImageManager : IImageService
     {
+        IImageDal _IImagedal;
+
+        public ImageManager(IImageDal ıImagedal)
+        {
+            _IImagedal = ıImagedal;
+        }
+
         public List<Image> GetList()
         {
-            throw new NotImplementedException();
+           return _IImagedal.GetListAll();
         }
 
         public void TAdd(Image t)
         {
-            throw new NotImplementedException();
+            _IImagedal.Insert(t);
         }
 
         public void TDelete(Image t)
         {
-            throw new NotImplementedException();
+           _IImagedal.Delete(t);
         }
 
         public Image TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _IImagedal.GetByID(id);
         }
 
         public void TUpdate(Image t)
         {
-            throw new NotImplementedException();
+            _IImagedal.Update(t);
         }
     }
 }

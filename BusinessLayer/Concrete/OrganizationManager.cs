@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,36 @@ namespace BusinessLayer.Concrete
 {
     public class OrganizationManager : IOrganizationService
     {
+        IOrganizationDal _organizationDal;
+
+        public OrganizationManager(IOrganizationDal organizationDal)
+        {
+            _organizationDal = organizationDal;
+        }
+
         public List<Organization> GetList()
         {
-            throw new NotImplementedException();
+            return _organizationDal.GetListAll();
         }
 
         public void TAdd(Organization t)
         {
-            throw new NotImplementedException();
+            _organizationDal.Insert(t);
         }
 
         public void TDelete(Organization t)
         {
-            throw new NotImplementedException();
+           _organizationDal.Delete(t);
         }
 
         public Organization TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _organizationDal.GetByID(id);
         }
 
         public void TUpdate(Organization t)
         {
-            throw new NotImplementedException();
+           _organizationDal.Update(t);
         }
     }
 }
