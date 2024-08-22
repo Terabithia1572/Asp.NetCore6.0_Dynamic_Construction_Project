@@ -15,5 +15,6 @@ namespace EntityLayer.Concrete
         public string SpecialProductContent { get; set; }
         public string SpecialProductImage { get; set; }
         public string SpecialProductTabIndex { get; set; }
+        public string SpecialProductStatus { get; set; }
     }
 }

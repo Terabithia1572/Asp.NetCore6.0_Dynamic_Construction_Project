@@ -33,6 +33,7 @@ namespace BusinessLayer.Concrete
             return _commentDal.GetListAll();
         }
 
+      
         public void TAdd(Comment t)
         {
             _commentDal.Insert(t);
