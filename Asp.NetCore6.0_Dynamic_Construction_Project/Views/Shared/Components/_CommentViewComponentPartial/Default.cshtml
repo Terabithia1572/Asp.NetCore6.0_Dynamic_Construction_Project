@@ -3,47 +3,48 @@
 
         <div class="section-title">
             <h2>Yorum</h2>
-            <p>Bir Yorum Yap</p>
+            <p>Bir Yorum Yap !</p>
         </div>
 
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-            <div class="row">
+        <form method="post" class="php-email-form" asp-action="AddComment" asp-controller="Comment" role="form" data-aos="fade-up" data-aos-delay="100" enctype="multipart/form-data">
+            <div class="form-row">
                 <div class="col-lg-4 col-md-6 form-group">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                    <input type="text" name="CommentUserName" class="form-control" id="name" placeholder="İsminiz" data-rule="minlen:3" data-msg="Lütfen en az 3 karakter girin">
                     <div class="validate"></div>
                 </div>
-                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" name="CommentTitle" class="form-control" id="name" placeholder="Konu" data-rule="minlen:3" data-msg="Lütfen en az 3 karakter girin">
                     <div class="validate"></div>
                 </div>
-                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                    <div class="validate"></div>
+                <div class="upload ">
+                    <button type="button" class="btn-warning" style="color:white">
+                        <i class="fa fa-upload"></i> Profil Fotoğrafı Yükle
+                        <input type="file" name="ImageUrl">
+                    </button>
                 </div>
-                <div class="col-lg-4 col-md-6 form-group mt-3">
-                    <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                    <div class="validate"></div>
-                </div>
-                <div class="col-lg-4 col-md-6 form-group mt-3">
-                    <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                    <div class="validate"></div>
-                </div>
-                <div class="col-lg-4 col-md-6 form-group mt-3">
-                    <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-                    <div class="validate"></div>
+                <div class="form-group mb-3 col-lg-4 col-md-6">
+                    <dnt-captcha asp-captcha-generator-max="999999" asp-captcha-generator-min="111111" asp-captcha-generator-language="Turkish"
+                                 asp-captcha-generator-display-mode="ShowDigits"
+                                 asp-placeholder="Resimdeki Rakamları Doğrulayın"
+                                 asp-validation-error-message="Lütfen Doğru Güvenlik Kodlarını Girin"
+                                 asp-font-name="Tahoma"
+                                 asp-font-size="20"
+                                 asp-fore-color="#333333"
+                                 asp-back-color="#ccc"
+                                 asp-text-box-class="text-box form-control"
+                                 asp-text-box-template="<span class='input-group-prepend'><span class='form-group-text'></span></span>{0}"
+                                 asp-validation-message-class="text-danger"
+                                 asp-refresh-button-class="fas fa-redo btn-sm"
+                                 asp-use-noise="false">
+
+                    </dnt-captcha>
                 </div>
             </div>
-            <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+            <div class="form-group">
+                <textarea class="form-control" name="CommentContent" rows="5" placeholder="Mesajınız"></textarea>
                 <div class="validate"></div>
             </div>
-            <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Yorum Yap</button></div>
+            <div class="text-center"><button type="submit">Gönder</button></div>
         </form>
-
     </div>
 </section>
