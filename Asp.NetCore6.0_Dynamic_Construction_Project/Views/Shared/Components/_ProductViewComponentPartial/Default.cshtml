@@ -23,7 +23,7 @@
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
             @foreach (var item in Model)
             {
-                <div class="col-lg-6 menu-item filter-starters">
+                <div class="col-lg-6 menu-item @item.ProductFilter">
                     <img src="@item.ProductImage" class="menu-img" alt="">
                     <div class="menu-content">
                         <a href="#">@item.ProductName</a><span>₺ @item.ProductPrice</span>
