@@ -10,7 +10,8 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.ViewComponents.Layout
         public IViewComponentResult Invoke()
         {
             var values = imageManager.GetList();
-            return View(values);
+            var lastEightValues = values.TakeLast(8).ToList();
+            return View(lastEightValues);
         }
     }
 }
