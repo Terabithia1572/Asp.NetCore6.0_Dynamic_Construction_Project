@@ -22,7 +22,7 @@
         @await Component.InvokeAsync("_ProductViewComponentPartial")
         @await Component.InvokeAsync("_SpecialProductViewComponentPartial")
         @await Component.InvokeAsync("_OrganizationViewComponentPartial")
-        @await Component.InvokeAsync("_CommentViewComponentPartial")
+        @await Html.PartialAsync("~/Views/Comment/AddComment.cshtml")
         @await Component.InvokeAsync("_AboutUsViewComponentPartial")
         @await Component.InvokeAsync("_GalleryViewComponentPartial")
         @await Component.InvokeAsync("_EmployeeViewComponentPartial")
