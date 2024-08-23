@@ -8,8 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\admin\.DS_Store" />
-    <None Include="wwwroot\admin\PSD\.DS_Store" />
+    <Compile Remove="wwwroot\dashboard\**" />
+    <Content Remove="wwwroot\dashboard\**" />
+    <EmbeddedResource Remove="wwwroot\dashboard\**" />
+    <None Remove="wwwroot\dashboard\**" />
   </ItemGroup>
 
   <ItemGroup>
