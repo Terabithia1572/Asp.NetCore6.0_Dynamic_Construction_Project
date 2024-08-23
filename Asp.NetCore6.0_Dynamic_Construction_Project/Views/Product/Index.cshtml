@@ -1,0 +1,58 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<section id="menu" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Menü</h2>
+            <p>Ürünlerimize Göz Atın..</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="menu-flters">
+                    <li data-filter="*" class="filter-active">Hepsi</li>
+                    <li data-filter=".filter-starters">Ahşap ve İnşaat</li>
+                    <li data-filter=".filter-salads">Dekorasyon</li>
+                    <li data-filter=".filter-specialty">Özel Ürünler</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col-lg-6 menu-item @item.ProductFilter">
+                    <img src="@item.ProductImage" class="menu-img" alt="" style="height:73px;width:72px">
+                    <div class="menu-content">
+                        <a href="#">@item.ProductName</a><span>@item.ProductPrice₺</span>
+                    </div>
+                    <div class="menu-ingredients">
+                        @item.ProductDescription
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>
+<meta name="google-site-verification" content="ffwmb16k-ELMcf8a7tdKK2SGxzKWJ96MEWSE9_B0vpE" />
+<!-- Google tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-216649461-1">
+</script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-216649461-1');
+</script>
+
+

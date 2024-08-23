@@ -1,0 +1,27 @@
+﻿@model SpecialProduct
+@{
+    ViewData["Title"] = "EditSpecialProduct";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Yeni Özel Ürün Güncelleme</h1>
+<br />
+
+@using (Html.BeginForm("EditSpecialProduct", "SpecialProduct", FormMethod.Post))
+{
+    @Html.Label("Özel Ürün ID")
+    @Html.TextBoxFor(x => x.SpecialProductID, new { @class = "form-control" })
+    <br />
+    @Html.Label(" Özel Ürün Adı")
+    @Html.TextBoxFor(x => x.SpecialProductTitle, new { @class = "form-control" })
+    <br />
+    @Html.Label("Özel Ürün Açıklaması")
+    @Html.TextAreaFor(x => x.SpecialProductContent, 15, 3, new { @class = "form-control" })
+    <br />
+    @Html.Label("Ürün Görseli")
+    @Html.TextBoxFor(x => x.SpecialProductImage, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Özel Ürün'ü Kaydet</button>
+
+}
+

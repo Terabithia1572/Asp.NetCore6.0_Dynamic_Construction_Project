@@ -16,7 +16,7 @@
     <div class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-danger card-img-holder text-white">
             <div class="card-body">
-                <img src="~/menduhinsaat/dashboard/circle.png" class="card-img-absolute" alt="circle-image" />
+                <img src="~/construction/dashboard/circle.png" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
                     Toplam Ürün Sayısı <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                 </h4>
@@ -28,7 +28,7 @@
     <div class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-info card-img-holder text-white">
             <div class="card-body">
-                <img src="~/menduhinsaat/dashboard/circle.png" class="card-img-absolute" alt="circle-image" />
+                <img src="~/construction/dashboard/circle.png" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
                     Toplam Yorum Sayısı <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                 </h4>
@@ -40,7 +40,7 @@
     <div class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-success card-img-holder text-white">
             <div class="card-body">
-                <img src="~/menduhinsaat/dashboard/circle.png" class="card-img-absolute" alt="circle-image" />
+                <img src="~/construction/dashboard/circle.png" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">
                     Toplam Resim Sayısı <i class="mdi mdi-diamond mdi-24px float-right"></i>
                 </h4>
@@ -51,3 +51,7 @@
     </div>
 </div>
 
+@await Component.InvokeAsync("Comment10LastComment")
+
+@* @await Component.InvokeAsync("AdminAboutOnDashBoard") *@
+@await Component.InvokeAsync("AdminDashBoardCategory")
