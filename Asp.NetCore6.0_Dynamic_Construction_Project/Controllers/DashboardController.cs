@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
+    [AllowAnonymous]
     public class DashboardController : Controller
     {
         ProductManager productManager = new ProductManager(new EfProductRepository());
@@ -25,6 +27,22 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
             var toplamYorumSayisi = commentManager.GetList().Count();
             ViewBag.ToplamYorumSayisi = toplamYorumSayisi;
             return View();
+        }
+        public IActionResult Test()
+        {
+
+            var toplamurunSayisi = productManager.GetList().Count();
+            ViewBag.ToplamUrunSayisi = toplamurunSayisi;
+            var toplamresimSayisi = imageManager.GetList().Count();
+            ViewBag.ToplamResimSayisi = toplamresimSayisi;
+            var toplamYorumSayisi = commentManager.GetList().Count();
+            ViewBag.ToplamYorumSayisi = toplamYorumSayisi;
+
+            return View();
+        }
+        public PartialViewResult AdminNavbarPartial()
+        {
+            return PartialView();
         }
     }
 }

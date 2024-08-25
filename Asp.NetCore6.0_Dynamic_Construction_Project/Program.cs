@@ -1,7 +1,46 @@
+using DataAccessLayer.Concrete;
+using DNTCaptcha.Core;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<Context>();
+
+builder.Services.AddIdentity<AppUser, AppRole>(options =>
+{
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+})
+.AddEntityFrameworkStores<Context>()
+.AddDefaultTokenProviders();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDNTCaptcha(options =>
+    options.UseCookieStorageProvider()
+           .ShowThousandsSeparators(false)
+           .WithEncryptionKey("123456"));
+builder.Services.AddSession();
+var policy = new AuthorizationPolicyBuilder()
+    .RequireAuthenticatedUser()
+    .Build();
+
+// MVC'yi ekleyin ve authorization filtresini ekleyin
+builder.Services.AddControllersWithViews(config => {
+    config.Filters.Add(new AuthorizeFilter(policy));
+});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/Index";
+    });
+
+
 
 var app = builder.Build();
 
@@ -18,7 +57,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseSession();
+app.UseAuthentication();  // Eðer authentication kullanýyorsanýz
+app.UseAuthorization();   // Eðer authorization kullanýyorsanýz
+app.UseEndpoints(endpoints => {
+    endpoints.MapDefaultControllerRoute();
+});
 
 app.MapControllerRoute(
     name: "default",

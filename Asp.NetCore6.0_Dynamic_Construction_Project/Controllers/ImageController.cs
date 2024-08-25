@@ -4,10 +4,12 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using DataAccessLayer.Models.DTOs;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
+    [AllowAnonymous]
     public class ImageController : Controller
     {
         ImageManager imageManager = new ImageManager(new EfImageRepository());

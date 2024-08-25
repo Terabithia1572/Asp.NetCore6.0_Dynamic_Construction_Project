@@ -1,4 +1,5 @@
-﻿@model List<Comment>
+﻿@using EntityLayer.Concrete
+@model List<Comment>
 <section id="testimonials" class="testimonials section-bg">
     <div class="container" data-aos="fade-up">      
         <div class="section-title">
@@ -7,6 +8,7 @@
         </div>
 
         <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
+              
             <div class="swiper-wrapper">
                 @foreach (var item in Model)
                 {
@@ -22,10 +24,12 @@
                             <h4>Müşteri</h4>
                         </div>
                     </div>
-                }
-            </div>
+                    }
+                </div>
+            
             <div class="swiper-pagination"></div>
         </div>
 
     </div>
 </section>
+

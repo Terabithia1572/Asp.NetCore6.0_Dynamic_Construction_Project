@@ -1,32 +1,40 @@
 ﻿using BusinessLayer.Concrete;
-using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using DataAccessLayer.Models.DTOs;
-
+using DNTCaptcha.Core;
 using EntityLayer.Concrete;
-
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
+    [AllowAnonymous]
     public class CommentController : Controller
     {
-       
-        CommentManager commentManager = new CommentManager(new EfCommentRepository());
+        private readonly IDNTCaptchaValidatorService _validatorService;
+        private readonly DNTCaptchaOptions _captchaOptions;
 
+        CommentManager commentManager = new CommentManager(new EfCommentRepository());
+      
         [HttpGet]
         public PartialViewResult AddComment()
         {
             return PartialView();
         }
-
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddComment(FileUploadModel fileUploadModel)
         {
             Comment comment = new Comment();
-           
+            if (ModelState.IsValid)
+            {
+                if (!_validatorService.HasRequestValidCaptchaEntry(Language.Turkish, DisplayMode.ShowDigits))
+                {
+                    this.ModelState.AddModelError(_captchaOptions.CaptchaComponent.CaptchaInputName, "Lütfen Doğrulama Kodunu Girin.");
+                    return RedirectToAction("Index", "Main");
+                }
+            }
             if (fileUploadModel.ImageUrl != null)
             {
                 var extension = Path.GetExtension(fileUploadModel.ImageUrl.FileName);
@@ -44,9 +52,9 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
             commentManager.TAdd(comment);
             return RedirectToAction("Index", "Main");
         }
-        public IActionResult CommentList()
+
+        public IActionResult CommentList(int id)
         {
-        
             var values = commentManager.GetList();
             return View(values);
         }
@@ -60,8 +68,13 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
         {
             var commentValue = commentManager.TGetByID(id);
             commentManager.TDelete(commentValue);
-            return RedirectToAction("Index", "Main");
+            return RedirectToAction("CardPage", "DashBoard");
         }
-      
+        public CommentController(IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> options)
+        {
+            _validatorService = validatorService;
+
+            _captchaOptions = options == null ? throw new ArgumentNullException(nameof(options)) : options.Value;
+        }
     }
 }

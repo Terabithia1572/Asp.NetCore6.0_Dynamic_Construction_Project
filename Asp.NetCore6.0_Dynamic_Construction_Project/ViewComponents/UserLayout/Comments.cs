@@ -1,14 +1,12 @@
 ﻿using BusinessLayer.Concrete;
-using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Asp.NetCore6._0_Dynamic_Construction_Project.ViewComponents.Layout
+namespace Asp.NetCore6._0_Dynamic_Construction_Project.ViewComponents.UserLayout
 {
-    public class _CommentViewComponentPartial:ViewComponent
+    public class Comments:ViewComponent
     {
         CommentManager commentManager = new CommentManager(new EfCommentRepository());
-
         public IViewComponentResult Invoke()
         {
             var values = commentManager.GetList();

@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 
@@ -35,7 +36,8 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    @await Component.InvokeAsync("_MainLayoutScriptsViewComponentPartial")
+    <!-- Vendor JS Files -->
+    @await Html.PartialAsync("Scripts") <!-- End Footer -->
 
 </body>
 

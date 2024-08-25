@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
+    [AllowAnonymous]
     public class VideoController : Controller
     {
         VideoManager videoManager = new VideoManager(new EfVideoRepository());

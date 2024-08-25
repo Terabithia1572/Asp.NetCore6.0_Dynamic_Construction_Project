@@ -19,5 +19,6 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Models
         [Display(Name = "Kullanıcı Adı")]
         [Required(ErrorMessage = "Lütfen Kullanıcı Giriniz..")]
         public string UserName { get; set; }
+        public string Image { get; set; }  // Kullanıcı tarafından yüklenen görsel
     }
 }
