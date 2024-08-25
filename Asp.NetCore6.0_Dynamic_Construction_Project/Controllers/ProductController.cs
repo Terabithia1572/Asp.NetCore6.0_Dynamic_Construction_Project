@@ -14,7 +14,7 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
         ProductManager productManager = new ProductManager(new EfProductRepository());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
 
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var values = productManager.GetList();
