@@ -6,62 +6,76 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
-    [AllowAnonymous]
+
     public class RegisterUserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         AdminManager adminManager = new AdminManager(new EfAdminRepository());
         Context context = new Context();
 
-        public RegisterUserController(UserManager<AppUser> userManager)
+
+        public RegisterUserController(UserManager<AppUser> userManager, IWebHostEnvironment hostingEnvironment)
         {
             _userManager = userManager;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var username = User.Identity.Name;
-            ViewBag.v1 = username;
-            var usermail = context.Admins.Where(x => x.Username == username).Select(y => y.Name).FirstOrDefault();
-            var userDescription = context.Admins.Where(x => x.Username == username).Select(y => y.ShortDescription).FirstOrDefault();
-            var userProfile = context.Admins.Where(x => x.Username == username).Select(y => y.ImageURL).FirstOrDefault();
-            ViewBag.v4 = userProfile;
-            var adminID = context.Admins.Where(x => x.Name == usermail).Select(y => y.AdminID).FirstOrDefault();
-            ViewBag.v2 = usermail;
-            ViewBag.v3 = userDescription;
+
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(UserSignUpViewModel userSignUpViewModel)
+        public async Task<IActionResult> Index(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                AppUser appUser = new AppUser()
+                // Profil fotoğrafını kaydet
+                string uniqueFileName = null;
+
+                if (model.ProfileImage != null)
                 {
-                    Email = userSignUpViewModel.Mail,
-                    UserName = userSignUpViewModel.UserName,
-                    NameSurname = userSignUpViewModel.NameSurname,
-                    ImageUrl=userSignUpViewModel.Image
-                };
-                var result = await _userManager.CreateAsync(appUser, userSignUpViewModel.Password);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index", "Login");
-                }
-                else
-                {
-                    foreach (var item in result.Errors)
+                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "RegisterImage");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfileImage.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                        ModelState.AddModelError("", item.Description);
+                        model.ProfileImage.CopyTo(fileStream);
                     }
                 }
+
+                var user = new AppUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    NameSurname = model.NameSurname,
+                    ImageUrl = "/RegisterImage/" + uniqueFileName
+                };
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    // Kullanıcıyı otomatik olarak giriş yaptırabiliriz veya başka bir sayfaya yönlendirebiliriz.
+                    return RedirectToAction("Test", "Dashboard");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
-            return View(userSignUpViewModel);
+
+            // Eğer bu noktaya gelirse, sayfayı tekrar göster ve hataları bildir
+            return View(model);
         }
+    
 
     }
 }

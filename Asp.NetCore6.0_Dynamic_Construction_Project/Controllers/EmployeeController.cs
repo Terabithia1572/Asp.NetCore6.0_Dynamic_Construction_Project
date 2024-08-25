@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
-    [AllowAnonymous]
+   
     public class EmployeeController : Controller
     {
         EmployeeManager employeeManager = new EmployeeManager(new EfEmployeeRepository());

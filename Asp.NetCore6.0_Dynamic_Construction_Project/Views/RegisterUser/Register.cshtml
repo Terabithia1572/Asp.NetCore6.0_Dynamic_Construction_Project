@@ -1,0 +1,42 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+
+<form asp-action="Register" method="post" enctype="multipart/form-data">
+    <div>
+        <label asp-for="NameSurname"></label>
+        <input asp-for="NameSurname" />
+    </div>
+
+    <div>
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+    </div>
+
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+    </div>
+
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+    </div>
+
+    <div>
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" type="password" />
+    </div>
+
+    <div>
+        <label asp-for="ProfileImage"></label>
+        <input asp-for="ProfileImage" type="file" />
+    </div>
+
+    <button type="submit">Kayıt Ol</button>
+</form>
+

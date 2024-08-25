@@ -1,7 +1,9 @@
-﻿using DataAccessLayer.Concrete;
+﻿using Asp.NetCore6._0_Dynamic_Construction_Project.Models;
+using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -10,36 +12,41 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
+        Context context = new();
+        private readonly SignInManager<AppUser> _signInManager;
+
+        public LoginController(SignInManager<AppUser> signInManager)
+        {
+            _signInManager = signInManager;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
+
         [HttpPost]
 
-        public async Task<IActionResult> Index(Admin admin)
+        public async Task< IActionResult> Index(UserSignInViewModel p)
         {
-            Context context = new Context();
-            var datavalue = context.Admins.FirstOrDefault(x => x.Username == admin.Username &&
-              x.Password == admin.Password);
-            if (datavalue != null)
+           
+            if (ModelState.IsValid)
             {
-                var claims = new List<Claim>
+                var result = await _signInManager.PasswordSignInAsync(p.username, p.password, true, false);
+                if(result.Succeeded)
                 {
-                    new Claim(ClaimTypes.Name,admin.Username)
-                };
-
-                var useridentity = new ClaimsIdentity(claims, "a");
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(useridentity);
-                await HttpContext.SignInAsync(claimsPrincipal);
-
-                return RedirectToAction("Test", "DashBoard");
+                    return RedirectToAction("Test", "Dashboard");
+                }
+                else
+                {
+                    return View();
+                }
             }
-            else
-            {
-                return View();
-            }
+            return RedirectToAction("Index", "Login");
+
 
         }
+
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync();

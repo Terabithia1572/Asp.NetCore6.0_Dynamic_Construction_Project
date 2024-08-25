@@ -9,7 +9,6 @@ using Microsoft.Extensions.Options;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
-    [AllowAnonymous]
     public class CommentController : Controller
     {
         private readonly IDNTCaptchaValidatorService _validatorService;
@@ -32,7 +31,7 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
                 if (!_validatorService.HasRequestValidCaptchaEntry(Language.Turkish, DisplayMode.ShowDigits))
                 {
                     this.ModelState.AddModelError(_captchaOptions.CaptchaComponent.CaptchaInputName, "Lütfen Doğrulama Kodunu Girin.");
-                    return RedirectToAction("Index", "Main");
+                    return RedirectToAction("Index", "Product");
                 }
             }
             if (fileUploadModel.ImageUrl != null)
@@ -50,7 +49,7 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
             comment.CommentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             comment.CommentStatus = true;
             commentManager.TAdd(comment);
-            return RedirectToAction("Index", "Main");
+            return RedirectToAction("Index", "Product");
         }
 
         public IActionResult CommentList(int id)

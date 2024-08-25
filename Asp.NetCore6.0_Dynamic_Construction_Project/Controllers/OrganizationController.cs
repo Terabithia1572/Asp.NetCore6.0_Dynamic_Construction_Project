@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
-    [AllowAnonymous]
+    
     public class OrganizationController : Controller
     {
         OrganizationManager organizationManager = new OrganizationManager(new EfOrganizationRepository());
