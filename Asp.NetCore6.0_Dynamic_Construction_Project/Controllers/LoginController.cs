@@ -12,11 +12,12 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        Context context = new();
+        private readonly Context _context;
         private readonly SignInManager<AppUser> _signInManager;
 
-        public LoginController(SignInManager<AppUser> signInManager)
+        public LoginController(Context context, SignInManager<AppUser> signInManager)
         {
+            _context = context;
             _signInManager = signInManager;
         }
 
@@ -26,14 +27,23 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
         }
 
         [HttpPost]
-
-        public async Task< IActionResult> Index(UserSignInViewModel p)
+        public async Task<IActionResult> Index(UserSignInViewModel p)
         {
-           
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(p.username, p.password, true, false);
-                if(result.Succeeded)
+                Log loginLog = new Log
+                {
+                    UserName = p.username,
+                    Date = DateTime.Now,
+                    Action = "Giriş Denemesi",
+                    Success = result.Succeeded
+                };
+
+                _context.Logs.Add(loginLog);
+                await _context.SaveChangesAsync();
+
+                if (result.Succeeded)
                 {
                     return RedirectToAction("Test", "Dashboard");
                 }
@@ -43,13 +53,22 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
                 }
             }
             return RedirectToAction("Index", "Login");
-
-
         }
 
         public async Task<IActionResult> LogOut()
         {
-            await HttpContext.SignOutAsync();
+            Log logoutLog = new Log
+            {
+                UserName = User.Identity.Name,
+                Date = DateTime.Now,
+                Action = "Logout",
+                Success = true
+            };
+
+            _context.Logs.Add(logoutLog);
+            await _context.SaveChangesAsync();
+
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Login");
         }
     }
