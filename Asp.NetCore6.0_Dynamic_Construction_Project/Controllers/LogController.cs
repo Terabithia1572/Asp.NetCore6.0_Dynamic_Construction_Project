@@ -15,5 +15,11 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
                          .ToList();
             return View(values);
         }
+        public IActionResult LogListAll()
+        {
+            var values = logManager.GetList();
+                      
+            return View(values);
+        }
     }
 }

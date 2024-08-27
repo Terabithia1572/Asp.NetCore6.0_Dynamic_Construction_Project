@@ -139,7 +139,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\EmployeeImageFolder\" />
     <Folder Include="wwwroot\ImageFolder\" />
-    <Folder Include="wwwroot\RegisterImage\" />
     <Folder Include="wwwroot\WorkImage\" />
   </ItemGroup>
 
