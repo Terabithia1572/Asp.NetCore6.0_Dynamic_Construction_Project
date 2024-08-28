@@ -1,0 +1,95 @@
+﻿@using Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
+
+@model List<Mail>
+@{
+    ViewData["Title"] = "MailDetail";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="card">
+    @foreach (var item in Model)
+    {
+        <div class="card-header">
+            <div class="row align-items-center">
+                <!-- Avatar and User Info -->
+                <div class="col-md d-flex align-items-center">
+                    <div class="flex-1 ms-3">
+                        <h5 class="mb-0">
+                            @item.MailTitle
+                        </h5>
+                        <a class="text-800 fs-10" href="#!">
+                            <span class="fw-semi-bold">@item.MailName @item.MailSurname</span>
+                            <span class="ms-1 text-500">&lt;@item.ReceiverMail&gt;</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Time and Star Icon -->
+                <div class="col-md-auto ms-auto d-flex align-items-center">
+                    <small>@item.MailDate.TimeAgo()</small>
+                    <span class="fas fa-star text-warning fs-10 ms-2"></span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body bg-body-tertiary">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xxl-6">
+                    <!-- Card with Image and Content -->
+                    <div class="card shadow-none mb-4">
+                        <div class="card-body">
+                            <h3 class="fw-semi-bold">@item.MailTitle</h3>
+                            <p>@item.MailContent</p>
+                        </div>
+                    </div>
+                    <!-- Social Media Icons -->
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<script src="~/falcon/v3.21.0/vendors/popper/popper.min.js"></script>
+<script src="~/falcon/v3.21.0/vendors/bootstrap/bootstrap.min.js"></script>
+<script src="~/falcon/v3.21.0/vendors/anchorjs/anchor.min.js"></script>
+<script src="~/falcon/v3.21.0/vendors/is/is.min.js"></script>
+<script src="~/falcon/v3.21.0/vendors/glightbox/glightbox.min.js"> </script>
+<script src="~/falcon/v3.21.0/vendors/prism/prism.js"></script>
+<script src="~/falcon/v3.21.0/vendors/fontawesome/all.min.js"></script>
+<script src="~/falcon/v3.21.0/vendors/lodash/lodash.min.js"></script>
+<script src="~/falcon/v3.21.0/~/falcon/v3.21.0/../polyfill.io/v3/polyfill.min58be.js?features=window.scroll"></script>
+<script src="~/falcon/v3.21.0/vendors/list.js/list.min.js"></script>
+<script src="~/falcon/v3.21.0/assets/js/theme.js"></script>
+<link rel="apple-touch-icon" sizes="180x180" href="~/falcon/v3.21.0/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="~/falcon/v3.21.0/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="~/falcon/v3.21.0/assets/img/favicons/favicon-16x16.png">
+<link rel="shortcut icon" type="image/x-icon" href="~/falcon/v3.21.0/assets/img/favicons/favicon.ico">
+<link rel="manifest" href="~/falcon/v3.21.0/assets/img/favicons/manifest.json">
+<script src="~/falcon/v3.21.0/assets/js/config.js"></script>
+<script src="~/falcon/v3.21.0/vendors/simplebar/simplebar.min.js"></script>
+
+<!-- ===============================================--><!--    Stylesheets--><!-- ===============================================-->
+<link href="~/falcon/v3.21.0/vendors/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="~/falcon/v3.21.0/vendors/prism/prism-okaidia.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com/">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+<link href="~/falcon/v3.21.0/vendors/simplebar/simplebar.min.css" rel="stylesheet">
+<link href="~/falcon/v3.21.0/assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
+<link href="~/falcon/v3.21.0/assets/css/theme.min.css" rel="stylesheet" id="style-default">
+<link href="~/falcon/v3.21.0/assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
+<link href="~/falcon/v3.21.0/assets/css/user.min.css" rel="stylesheet" id="user-style-default">
+<script>
+    var isRTL = JSON.parse(localStorage.getItem('isRTL'));
+    if (isRTL) {
+        var linkDefault = document.getElementById('style-default');
+        var userLinkDefault = document.getElementById('user-style-default');
+        linkDefault.setAttribute('disabled', true);
+        userLinkDefault.setAttribute('disabled', true);
+        document.querySelector('html').setAttribute('dir', 'rtl');
+    } else {
+        var linkRTL = document.getElementById('style-rtl');
+        var userLinkRTL = document.getElementById('user-style-rtl');
+        linkRTL.setAttribute('disabled', true);
+        userLinkRTL.setAttribute('disabled', true);
+    }
+</script>
+

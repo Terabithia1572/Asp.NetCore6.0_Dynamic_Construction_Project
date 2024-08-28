@@ -9,5 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IMailService:IGenericService<Mail>
     {
+        List<Mail> GetMailByID(int id);
+
     }
 }

@@ -12,9 +12,21 @@ namespace BusinessLayer.Concrete
     public class MailManager : IMailService
     {
         IMailDal _mailDal;
+
+        public MailManager(IMailDal mailDal)
+        {
+            _mailDal = mailDal;
+        }
+
         public List<Mail> GetList()
         {
             return _mailDal.GetListAll();
+        }
+
+        public List<Mail> GetMailByID(int id)
+        {
+            return _mailDal.GetListAll(x => x.MailID == id);
+
         }
 
         public void TAdd(Mail t)
