@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en-US" dir="ltr">
+
+  
+<!-- Mirrored from prium.github.io/falcon/v3.21.0/app/email/inbox.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Aug 2024 15:10:50 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+   
+    <link rel="apple-touch-icon" sizes="180x180" href="~/falcon/v3.21.0/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/falcon/v3.21.0/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/falcon/v3.21.0/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/falcon/v3.21.0/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="~/falcon/v3.21.0/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="~/falcon/v3.21.0/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="~/falcon/v3.21.0/assets/js/config.js"></script>
+    <script src="~/falcon/v3.21.0/vendors/simplebar/simplebar.min.js"></script>
+
+    <!-- ===============================================--><!--    Stylesheets--><!-- ===============================================-->
+    <link href="~/falcon/v3.21.0/vendors/glightbox/glightbox.min.css" rel="stylesheet">
+    <link href="~/falcon/v3.21.0/vendors/prism/prism-okaidia.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+    <link href="~/falcon/v3.21.0/vendors/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="~/falcon/v3.21.0/assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
+    <link href="~/falcon/v3.21.0/assets/css/theme.min.css" rel="stylesheet" id="style-default">
+    <link href="~/falcon/v3.21.0/assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
+    <link href="~/falcon/v3.21.0/assets/css/user.min.css" rel="stylesheet" id="user-style-default">
+    <script>
+      var isRTL = JSON.parse(localStorage.getItem('isRTL'));
+      if (isRTL) {
+        var linkDefault = document.getElementById('style-default');
+        var userLinkDefault = document.getElementById('user-style-default');
+        linkDefault.setAttribute('disabled', true);
+        userLinkDefault.setAttribute('disabled', true);
+        document.querySelector('html').setAttribute('dir', 'rtl');
+      } else {
+        var linkRTL = document.getElementById('style-rtl');
+        var userLinkRTL = document.getElementById('user-style-rtl');
+        linkRTL.setAttribute('disabled', true);
+        userLinkRTL.setAttribute('disabled', true);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
+    <main class="main" id="top">
+      <div class="container" data-layout="container">
+        <script>
+          var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+          if (isFluid) {
+            var container = document.querySelector('[data-layout]');
+            container.classList.remove('container');
+            container.classList.add('container-fluid');
+          }
+        </script>
+        
+        
+        
+        <div class="content">
+          
+          
+          <script>
+            var navbarPosition = localStorage.getItem('navbarPosition');
+            var navbarVertical = document.querySelector('.navbar-vertical');
+            var navbarTopVertical = document.querySelector('.content .navbar-top');
+            var navbarTop = document.querySelector('[data-layout] .navbar-top:not([data-double-top-nav');
+            var navbarDoubleTop = document.querySelector('[data-double-top-nav]');
+            var navbarTopCombo = document.querySelector('.content [data-navbar-top="combo"]');
+
+            if (localStorage.getItem('navbarPosition') === 'double-top') {
+              document.documentElement.classList.toggle('double-top-nav-layout');
+            }
+
+            if (navbarPosition === 'top') {
+              navbarTop.removeAttribute('style');
+              navbarTopVertical.remove(navbarTopVertical);
+              navbarVertical.remove(navbarVertical);
+              navbarTopCombo.remove(navbarTopCombo);
+              navbarDoubleTop.remove(navbarDoubleTop);
+            } else if (navbarPosition === 'combo') {
+              navbarVertical.removeAttribute('style');
+              navbarTopCombo.removeAttribute('style');
+              navbarTop.remove(navbarTop);
+              navbarTopVertical.remove(navbarTopVertical);
+              navbarDoubleTop.remove(navbarDoubleTop);
+            } else if (navbarPosition === 'double-top') {
+              navbarDoubleTop.removeAttribute('style');
+              navbarTopVertical.remove(navbarTopVertical);
+              navbarVertical.remove(navbarVertical);
+              navbarTop.remove(navbarTop);
+              navbarTopCombo.remove(navbarTopCombo);
+            } else {
+              navbarVertical.removeAttribute('style');
+              navbarTopVertical.removeAttribute('style');
+              navbarTop.remove(navbarTop);
+              navbarDoubleTop.remove(navbarDoubleTop);
+              navbarTopCombo.remove(navbarTopCombo);
+            }
+          </script>
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col d-flex align-items-center">
+                  <div class="form-check mb-0 d-none d-sm-block"><input class="form-check-input checkbox-bulk-select" type="checkbox" data-bulk-select='{"body":"emails","actions":"emails-actions"}' /></div><button class="btn btn-falcon-default btn-sm ms-sm-1" type="button" onclick="location.reload()"><span class="fas fa-redo"></span></button>
+                  <div class="dropdown font-sans-serif"><button class="btn btn-falcon-default text-600 btn-sm dropdown-toggle dropdown-caret-none ms-2" type="button" id="email-filter" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-sliders-h"></span></button>
+                    <div class="dropdown-menu border py-0" aria-labelledby="email-filter">
+                      <div class="bg-body-quaternary py-2"><a class="dropdown-item d-flex justify-content-between" href="#!">All<span class="fas fa-check" data-fa-transform="down-4 shrink-4"></span></a><a class="dropdown-item" href="#!">Unread</a><a class="dropdown-item" href="#!">To me</a><a class="dropdown-item" href="#!">Flagged</a><a class="dropdown-item" href="#!">Mentions</a><a class="dropdown-item" href="#!">Attachments</a></div>
+                    </div>
+                  </div>
+                  <div class="border-start ms-3 ps-3 d-none" id="emails-actions">
+                    <div class="btn-group btn-group-sm"><button class="btn btn-falcon-default" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Archive"><span class="fas fa-archive"></span></button><button class="btn btn-falcon-default" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><span class="fas fa-trash-alt"></span></button><button class="btn btn-falcon-default" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread"><span class="fas fa-envelope"></span></button><button class="btn btn-falcon-default" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Snooze"><span class="fas fa-clock"></span></button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body fs-10 border-top border-200 p-0" id="emails">
+              <h5 class="fs-9 px-3 pt-3 pb-2 mb-0 border-bottom border-200">Mailler</h5>
+              <div class="row border-bottom border-200 hover-actions-trigger hover-shadow py-2 px-1 mx-0 bg-white dark__bg-dark" data-href="email-detail.html">
+                <div class="btn-group btn-group-sm z-2 hover-actions end-0 me-3" style="width: 10rem;"><button class="btn btn-tertiary hover-bg-200" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Archive"><span class="fas fa-archive"></span></button><button class="btn btn-tertiary hover-bg-200" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><span class="fas fa-trash-alt"></span></button><button class="btn btn-tertiary hover-bg-200" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as read"><span class="fas fa-envelope-open"></span></button><button class="btn btn-tertiary hover-bg-200" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Snooze"><span class="fas fa-clock"></span></button></div>
+                <div class="col-auto d-none d-sm-block">
+                  <div class="d-flex bg-white dark__bg-dark">
+                    <div class="form-check mb-0 fs-9"><input class="form-check-input" type="checkbox" id="checkbox-2" data-bulk-select-row="data-bulk-select-row" /></div><span class="fas text-warning fa-star ms-1" data-fa-transform="down-4"></span>
+                  </div>
+                </div>
+                <div class="col col-md-9 col-xxl-10">
+                  <div class="row">
+                    <div class="col-md-4 col-xl-3 col-xxl-2 ps-md-0 mb-1 mb-md-0">
+                      <div class="d-flex position-relative">
+                        <div class="avatar avatar-s">
+                          <img class="rounded-soft" src="~/falcon/v3.21.0/assets/img/team/17.jpg" alt="" />
+                        </div>
+                        <div class="flex-1 ms-2"><a class="fw-bold stretched-link inbox-link" href="email-detail.html">Diana</a><span class="badge badge-subtle-success badge-pill ms-2">NEW</span></div>
+                      </div>
+                    </div>
+                    <div class="col"><a class="d-block inbox-link" href="email-detail.html"><span class="fw-bold">Your Daily Work Summary</span><span class="mx-1">&ndash;</span><span>And they'd probably do a lot of damage to an...</span></a></div>
+                  </div>
+                </div>
+                <div class="col-auto ms-auto d-flex flex-column justify-content-between"><span class="fw-bold">Mar 26</span><span class="fas text-warning fa-star ms-auto mb-2 d-sm-none" data-fa-transform="down-7"></span></div>
+              </div>
+            
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </main>
+
+
+
+    <script src="~/falcon/v3.21.0/vendors/popper/popper.min.js"></script>
+    <script src="~/falcon/v3.21.0/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="~/falcon/v3.21.0/vendors/anchorjs/anchor.min.js"></script>
+    <script src="~/falcon/v3.21.0/vendors/is/is.min.js"></script>
+    <script src="~/falcon/v3.21.0/vendors/glightbox/glightbox.min.js"> </script>
+    <script src="~/falcon/v3.21.0/vendors/prism/prism.js"></script>
+    <script src="~/falcon/v3.21.0/vendors/fontawesome/all.min.js"></script>
+    <script src="~/falcon/v3.21.0/vendors/lodash/lodash.min.js"></script>
+    <script src="~/falcon/v3.21.0/~/falcon/v3.21.0/../polyfill.io/v3/polyfill.min58be.js?features=window.scroll"></script>
+    <script src="~/falcon/v3.21.0/vendors/list.js/list.min.js"></script>
+    <script src="~/falcon/v3.21.0/assets/js/theme.js"></script>
+  </body>
+
+
+</html>
