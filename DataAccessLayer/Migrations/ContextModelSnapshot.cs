@@ -346,6 +346,42 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Logs");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Mail", b =>
+                {
+                    b.Property<int>("MailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MailID"), 1L, 1);
+
+                    b.Property<string>("MailContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MailDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MailName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailSurname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverMail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MailID");
+
+                    b.ToTable("Mails");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Organization", b =>
                 {
                     b.Property<int>("OrganizationID")
