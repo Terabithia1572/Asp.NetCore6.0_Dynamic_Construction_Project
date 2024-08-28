@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    public class Context:IdentityDbContext<AppUser,AppRole,int>
+    public class Context : IdentityDbContext<AppUser, AppRole, int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=.;database=ConstructionDB;integrated security=true;");
-            //optionsBuilder.UseSqlServer("server=45.10.150.55\\MSSQLSERVER2012;database=menduhDB;user=sqladmin;password=Yunus6565*");
+            //optionsBuilder.UseSqlServer("server=.;database=ConstructionDB;integrated security=true;");
+            optionsBuilder.UseSqlServer("server=77.245.159.10\\MSSQLSERVER2019;database=ConstructionDB;user=ConstructionDB;password=Yunus6565*");
 
         }
         public DbSet<Admin> Admins { get; set; }

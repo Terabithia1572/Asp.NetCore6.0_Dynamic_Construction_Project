@@ -1,11 +1,16 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using DataAccessLayer.Models.DTOs;
+using DNTCaptcha.Core;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
     public class Mail1Controller : Controller
     {
+        private readonly IDNTCaptchaValidatorService _validatorService;
+        private readonly DNTCaptchaOptions _captchaOptions;
         MailManager mailManager=new MailManager(new EfMailRepository());
         public IActionResult Index()
         {
@@ -25,8 +30,27 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 
             return RedirectToAction("Index", "Mail1");
         }
+        [HttpGet]
+        public PartialViewResult AddComment()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SendMail(MailReceiverModel mailReceiverModel)
+        {
+           Mail mail=new Mail();
 
-       
+            mail.MailName = mailReceiverModel.MailName;
+            mail.MailSurname = mailReceiverModel.MailSurname;
+            mail.ReceiverMail = mailReceiverModel.ReceiverMail;
+            mail.MailTitle = mailReceiverModel.MailTitle;
+            mail.MailContent = mailReceiverModel.MailContent;
+            mail.MailDate = DateTime.Now;          
+            mailManager.TAdd(mail);
+            return RedirectToAction("Index", "Product");
+        }
+
     }
     public static class DateTimeExtensions
     {

@@ -1,0 +1,53 @@
+﻿
+
+<div class="col-lg-8 mt-5 mt-lg-0">
+
+    <form method="post" role="form" class="php-email-form" asp-action="SendMail" asp-controller="Mail1">
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <input type="text" name="MailName" class="form-control" id="MailName" placeholder="İsminiz" data-rule="minlen:4" />
+                <div class="validate"></div>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" name="MailSurname" class="form-control" id="MailSurname" placeholder="Soyisminiz" data-rule="minlen:4" />
+                <div class="validate"></div>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="email" class="form-control" name="ReceiverMail" id="ReceiverMail" placeholder="E-Mail" data-rule="email" />
+                <div class="validate"></div>
+            </div>
+        </div>
+        <div class="form-group mb-3 col-lg-4 col-md-6">
+            <dnt-captcha asp-captcha-generator-max="999999" asp-captcha-generator-min="111111" asp-captcha-generator-language="Turkish"
+                         asp-captcha-generator-display-mode="ShowDigits"
+                         asp-placeholder="Resimdeki Rakamları Doğrulayın"
+                         asp-validation-error-message="Lütfen Doğru Güvenlik Kodlarını Girin"
+                         asp-font-name="Tahoma"
+                         asp-font-size="20"
+                         asp-fore-color="#333333"
+                         asp-back-color="#ccc"
+                         asp-text-box-class="text-box form-control"
+                         asp-text-box-template="<span class='input-group-prepend'><span class='form-group-text'></span></span>{0}"
+                         asp-validation-message-class="text-danger"
+                         asp-refresh-button-class="fas fa-redo btn-sm"
+                         asp-use-noise="false">
+
+            </dnt-captcha>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="MailTitle" id="MailTitle" placeholder="Konu" data-rule="minlen:4" />
+            <div class="validate"></div>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="MailContent" id="MailContent" rows="8" data-rule="required" data-msg="Please write something for us" placeholder="Mesajınız"></textarea>
+            <div class="validate"></div>
+        </div>
+        <div class="mb-3">
+            <div class="loading">Yükleniyor</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Mesajınız gönderildi. Teşekkürler!</div>
+        </div>
+        <div class="text-center"><button type="submit">Mesaj Gönder</button></div>
+    </form>
+
+</div>

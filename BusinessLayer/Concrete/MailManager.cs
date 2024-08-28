@@ -31,7 +31,7 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Mail t)
         {
-            throw new NotImplementedException();
+            _mailDal.Insert(t);
         }
 
         public void TDelete(Mail t)

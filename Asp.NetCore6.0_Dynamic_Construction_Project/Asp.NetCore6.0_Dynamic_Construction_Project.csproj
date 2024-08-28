@@ -214,7 +214,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\admin\PSD\" />
     <Folder Include="wwwroot\EmployeeImageFolder\" />
-    <Folder Include="wwwroot\ImageFolder\" />
     <Folder Include="wwwroot\WorkImage\" />
   </ItemGroup>
 
