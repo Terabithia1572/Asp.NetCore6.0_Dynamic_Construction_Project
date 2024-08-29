@@ -38,7 +38,7 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
             ViewBag.ToplamYorumSayisi = toplamYorumSayisi;
             return View();
         }
-        public IActionResult Test()
+        public async Task< IActionResult> Test()
         {
 
             var toplamurunSayisi = productManager.GetList().Count();
@@ -56,6 +56,15 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
             var adminID = context.Admins.Where(x => x.Name == usermail).Select(y => y.AdminID).FirstOrDefault();
             ViewBag.v2 = usermail;
             ViewBag.v3 = userDescription;
+
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user != null)
+            {
+                // ImageUrl alanını ViewBag'e ekliyoruz
+                ViewBag.UserImageUrl = user.ImageUrl;
+            }
+
             var values = adminManager.GetAdminByID(adminID);
 
             return View(values);

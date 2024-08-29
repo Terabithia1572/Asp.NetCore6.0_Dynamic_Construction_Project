@@ -18,13 +18,24 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.ViewComponents.Dashboard
             _userManager = userManager;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task <IViewComponentResult> InvokeAsync()
         {
             var username = User.Identity.Name;
             ViewBag.v1 = username;
             var usermail = context.Admins.Where(x => x.Username == username).Select(y => y.Name).FirstOrDefault();
 
             var adminID = context.Admins.Where(x => x.Name == usermail).Select(y => y.AdminID).FirstOrDefault();
+
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user != null)
+            {
+                // ImageUrl alanını ViewBag'e ekliyoruz
+                ViewBag.UserImageUrl = user.ImageUrl;
+                ViewBag.UserName = user.UserName;
+                
+                
+            }
             var values = adminManager.GetAdminByID(adminID);
             return View(values);
         }
