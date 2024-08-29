@@ -9,18 +9,21 @@ using Microsoft.Extensions.Options;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
+    
     public class CommentController : Controller
     {
         private readonly IDNTCaptchaValidatorService _validatorService;
         private readonly DNTCaptchaOptions _captchaOptions;
 
         CommentManager commentManager = new CommentManager(new EfCommentRepository());
-      
+
+        [AllowAnonymous]
         [HttpGet]
         public PartialViewResult AddComment()
         {
             return PartialView();
         }
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddComment(FileUploadModel fileUploadModel)

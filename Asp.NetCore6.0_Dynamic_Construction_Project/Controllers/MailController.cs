@@ -6,7 +6,7 @@ using MimeKit;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
-    [AllowAnonymous]
+   
     public class MailController : Controller
     {
         [HttpGet]

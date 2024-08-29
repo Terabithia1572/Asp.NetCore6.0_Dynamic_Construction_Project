@@ -3,10 +3,12 @@ using DataAccessLayer.EntityFramework;
 using DataAccessLayer.Models.DTOs;
 using DNTCaptcha.Core;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
+    
     public class Mail1Controller : Controller
     {
         private readonly IDNTCaptchaValidatorService _validatorService;
@@ -30,11 +32,7 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 
             return RedirectToAction("Index", "Mail1");
         }
-        [HttpGet]
-        public PartialViewResult AddComment()
-        {
-            return PartialView();
-        }
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SendMail(MailReceiverModel mailReceiverModel)
@@ -52,6 +50,7 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
         }
 
     }
+    [AllowAnonymous]
     public static class DateTimeExtensions
     {
         public static string TimeAgo(this DateTime dateTime)

@@ -13,8 +13,8 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("server=.;database=ConstructionDB;integrated security=true;");
-            optionsBuilder.UseSqlServer("server=77.245.159.10\\MSSQLSERVER2019;database=ConstructionDB;user=ConstructionDB;password=Yunus6565*");
+            optionsBuilder.UseSqlServer("server=.;database=ConstructionDB;integrated security=true;");
+            //optionsBuilder.UseSqlServer("server=77.245.159.10\\MSSQLSERVER2019;database=ConstructionDB;user=ConstructionDB;password=Yunus6565*");
 
         }
         public DbSet<Admin> Admins { get; set; }

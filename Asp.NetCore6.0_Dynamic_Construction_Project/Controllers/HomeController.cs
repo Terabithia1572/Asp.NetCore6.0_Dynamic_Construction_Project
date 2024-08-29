@@ -1,9 +1,11 @@
 ﻿using Asp.NetCore6._0_Dynamic_Construction_Project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
