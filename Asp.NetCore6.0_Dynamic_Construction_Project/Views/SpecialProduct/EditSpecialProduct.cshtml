@@ -1,27 +1,36 @@
-﻿@model SpecialProduct
+﻿@model Asp.NetCore6._0_Dynamic_Construction_Project.Models.SpecialProductImages
 @{
     ViewData["Title"] = "EditSpecialProduct";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<h1>Yeni Özel Ürün Güncelleme</h1>
-<br />
+<link href="~/css/comment.css" rel="stylesheet" />
+<h2>Özel Ürün Güncelle</h2>
 
-@using (Html.BeginForm("EditSpecialProduct", "SpecialProduct", FormMethod.Post))
-{
-    @Html.Label("Özel Ürün ID")
-    @Html.TextBoxFor(x => x.SpecialProductID, new { @class = "form-control" })
-    <br />
-    @Html.Label(" Özel Ürün Adı")
-    @Html.TextBoxFor(x => x.SpecialProductTitle, new { @class = "form-control" })
-    <br />
-    @Html.Label("Özel Ürün Açıklaması")
-    @Html.TextAreaFor(x => x.SpecialProductContent, 15, 3, new { @class = "form-control" })
-    <br />
-    @Html.Label("Ürün Görseli")
-    @Html.TextBoxFor(x => x.SpecialProductImage, new { @class = "form-control" })
-    <br />
-    <button class="btn btn-info">Özel Ürün'ü Kaydet</button>
+<form asp-action="EditSpecialProduct" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="SpecialProductID" />
 
-}
+    <div class="form-group">
+        <label for="SpecialProductTitle">Ürün Adı</label>
+        <input type="text" class="form-control" asp-for="SpecialProductTitle" />
+        <span asp-validation-for="SpecialProductTitle" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="SpecialProductContent">Ürün Açıklaması</label>
+        <textarea class="form-control" asp-for="SpecialProductContent"></textarea>
+        <span asp-validation-for="SpecialProductContent" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="SpecialProductImage">Yeni Resim Yükle</label>
+        <input type="file" class="form-control" asp-for="SpecialProductImage" />
+        @if (Model.ExistingImagePath != null)
+        {
+            <img src="@Model.ExistingImagePath" width="100" height="100" />
+            <p>Mevcut Resim</p>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>
 

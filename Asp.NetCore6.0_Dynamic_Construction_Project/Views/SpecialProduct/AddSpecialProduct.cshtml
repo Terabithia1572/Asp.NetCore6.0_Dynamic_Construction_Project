@@ -4,22 +4,55 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<h1>Yeni Özel Ürün Girişi</h1>
-<br />
-
-@using (Html.BeginForm("AddSpecialProduct", "SpecialProduct", FormMethod.Post))
-{
-    @Html.Label(" Özel Ürün Adı")
-    @Html.TextBoxFor(x => x.SpecialProductTitle, new { @class = "form-control" })
-    <br />
-    @Html.Label("Özel Ürün Açıklaması")
-    @Html.TextAreaFor(x => x.SpecialProductContent, 15, 3, new { @class = "form-control" })
-    <br />
-    @Html.Label("Ürün Görseli")
-    @Html.TextBoxFor(x => x.SpecialProductImage, new { @class = "form-control" })
-    <br />
-    <button class="btn btn-info">Özel Ürün'ü Kaydet</button>
-
-}
 
 
+<link href="~/css/comment.css" rel="stylesheet" />
+<section id="book-a-table" class="book-a-table">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Ürün</h2>
+            <p>Yeni Özel Ürün Ekle !</p>
+        </div>
+
+        <form method="post" class="php-email-form" asp-action="AddSpecialProduct" asp-controller="SpecialProduct" role="form" data-aos="fade-up" data-aos-delay="100" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" name="SpecialProductTitle" class="form-control" id="name" placeholder="Ürün Adı" data-rule="minlen:3" data-msg="Lütfen en az 3 karakter girin">
+                    <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <textarea name="SpecialProductContent" class="form-control" id="name" placeholder="Ürün Açıklaması" data-rule="minlen:3" data-msg="Lütfen en az 3 karakter girin"></textarea>
+                    <div class="validate"></div>
+                </div>
+
+                <div class="upload ">
+                    <button type="button" class="btn-warning" style="color:white">
+                        <i class="fa fa-upload"></i> Ürün Fotoğrafı Yükle
+                        <input type="file" name="SpecialProductImage">
+                    </button>
+                </div>
+
+                
+                
+
+            </div>
+
+            <div class="text-center"><button type="submit" class="btn btn-danger">Ürün Ekle</button></div>
+        </form>
+    </div>
+</section>
+<style>
+    textarea.form-control {
+        height: 150px; /* Textarea'nın yüksekliği */
+        resize: none; /* Kullanıcının boyutunu değiştirmesini engellemek için */
+        padding: 10px; /* İçerik boşluğu */
+        border-radius: 4px; /* Köşeleri yuvarlamak için */
+        border: 1px solid #ccc; /* Çerçeve rengi */
+        background-color: #fff; /* Arka plan rengi */
+        font-family: Arial, sans-serif; /* Yazı tipi */
+        font-size: 14px; /* Yazı boyutu */
+        line-height: 1.5; /* Satır yüksekliği */
+    }
+
+</style>

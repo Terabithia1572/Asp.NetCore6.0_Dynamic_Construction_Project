@@ -1,0 +1,9 @@
+.preview-item .preview-subject,
+.preview-item p {
+    color: black; /* Yazý rengini siyah olarak ayarlayýn */
+}
+
+.preview-item:hover .preview-subject,
+.preview-item:hover p {
+    color: black; /* Hover durumunda da yazý renginin siyah kalmasýný saðlayýn */
+}
