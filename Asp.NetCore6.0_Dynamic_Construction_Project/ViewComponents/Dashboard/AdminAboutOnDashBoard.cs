@@ -32,7 +32,7 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.ViewComponents.Dashboard
             {
                 // ImageUrl alanını ViewBag'e ekliyoruz
                 ViewBag.UserImageUrl = user.ImageUrl;
-                ViewBag.UserName = user.UserName;
+                ViewBag.UserName = user.NameSurname;
                 
                 
             }
