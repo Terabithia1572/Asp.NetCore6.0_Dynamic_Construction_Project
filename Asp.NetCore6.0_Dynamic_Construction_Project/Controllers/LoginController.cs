@@ -61,7 +61,7 @@ namespace Asp.NetCore6._0_Dynamic_Construction_Project.Controllers
             {
                 UserName = User.Identity.Name,
                 Date = DateTime.Now,
-                Action = "Logout",
+                Action = "Çıkış Yaptı",
                 Success = true
             };
 
