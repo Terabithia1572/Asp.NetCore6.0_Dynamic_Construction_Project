@@ -107,9 +107,7 @@
                 </script>
                 
                 <div class="card">
-                   
                     <div class="card-header">
-                       
                         <div class="row align-items-center">
                             <div class="col-12 d-flex flex-column flex-sm-row align-items-center">
                                 <!-- Checkbox -->
@@ -119,74 +117,64 @@
 
                                 <div class="border-start ms-0 ps-0 d-none" id="emails-actions">
                                     <div class="btn-group btn-group-sm d-flex flex-column flex-sm-row">
-
                                         <button class="btn btn-falcon-default mb-2 mb-sm-0" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                             <span class="fas fa-trash-alt"></span>
                                         </button>
-
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="card-body fs-10 border-top border-200 p-0" id="emails">
                         <h5 class="fs-9 px-3 pt-3 pb-2 mb-0 border-bottom border-200">Mailler</h5>
                         @foreach (var item in Model)
                         {
-                        <div class="row border-bottom border-200 hover-actions-trigger hover-shadow py-2 px-1 mx-0 bg-white dark__bg-dark" data-href="email-detail.html">
-                            <div class="btn-group btn-group-sm z-2 hover-actions end-0 me-3" style="width: 10rem;">
-
-                                <a href="/Mail1/DeleteMail/@item.MailID" class="btn btn-tertiary hover-bg-200" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Sil">
-                                    <span class="fas fa-trash-alt"></span>
-                                </a>
-
-
-                            </div>
-                           
-                            <div class="col-auto d-none d-sm-block">
-                                
-                                <div class="d-flex bg-white dark__bg-dark">
-                                    <div class="form-check mb-0 fs-9">
-                                        <input class="form-check-input" type="checkbox" id="checkbox-2" data-bulk-select-row="data-bulk-select-row" />
-                                    </div>
-                                    <span class="fas text-warning fa-star ms-1" data-fa-transform="down-4"></span>
+                            <div class="row border-bottom border-200 hover-actions-trigger hover-shadow py-2 px-1 mx-0 bg-white dark__bg-dark align-items-center" data-href="email-detail.html">
+                                <div class="btn-group btn-group-sm z-2 hover-actions end-0 me-3" style="width: 10rem;">
+                                    <a href="/Mail1/DeleteMail/@item.MailID" class="btn btn-tertiary hover-bg-200" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Sil">
+                                        <span class="fas fa-trash-alt"></span>
+                                    </a>
                                 </div>
-                            </div>
-                           
-                                
-                            
-                            <div class="col col-md-9 col-xxl-10">
-                                <div class="row">
-                                    <div class="col-md-4 col-xl-3 col-xxl-2 ps-md-0 mb-1 mb-md-0">
-                                        <div class="d-flex position-relative">
-                                            <div class="flex-1 ms-2">
+
+                                <div class="col-auto d-none d-sm-block">
+                                    <div class="d-flex bg-white dark__bg-dark">
+                                        <div class="form-check mb-0 fs-9">
+                                            <input class="form-check-input" type="checkbox" id="checkbox-2" data-bulk-select-row="data-bulk-select-row" />
+                                        </div>
+                                        <span class="fas text-warning fa-star ms-1" data-fa-transform="down-4"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col col-md-9 col-xxl-10">
+                                    <div class="row">
+                                        <div class="col-12 col-md-4 col-xl-3 col-xxl-2 ps-md-0 mb-1 mb-md-0">
+                                            <div class="d-flex position-relative">
+                                                <div class="flex-1 ms-2">
                                                     <a class="fw-bold stretched-link inbox-link" href="/Mail1/MailDetail/@item.MailID">@item.MailName @item.MailSurname</a>
-                                                <span class="badge badge-subtle-success badge-pill ms-2">NEW</span>
+                                                    <span class="badge badge-subtle-success badge-pill ms-2">NEW</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col">
-                                        <a class="d-block inbox-link" href="/Mail1/MailDetail/@item.MailID">
+                                        <div class="col-12 col-md-8">
+                                            <a class="d-block inbox-link" href="/Mail1/MailDetail/@item.MailID">
                                                 <span class="fw-bold">@item.MailTitle</span>
                                                 <span class="mx-1">&ndash;</span>
                                                 <span>@(item.MailContent.Length > 30 ? item.MailContent.Substring(0, 30) + "..." : item.MailContent)</span>
                                             </a>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="col-auto ms-auto d-flex flex-column justify-content-between">
+                                    <span class="fw-bold">@item.MailDate</span>
+                                    <span class="fas text-warning fa-star ms-auto mb-2 d-sm-none" data-fa-transform="down-7"></span>
+                                </div>
                             </div>
-                            
-                            
-                            <div class="col-auto ms-auto d-flex flex-column justify-content-between">
-                                <span class="fw-bold">@item.MailDate</span>
-                                <span class="fas text-warning fa-star ms-auto mb-2 d-sm-none" data-fa-transform="down-7"></span>
-                            </div>
-                            
-                        </div>
                         }
                     </div>
-                    
                 </div>
+
                 
 
             </div>
